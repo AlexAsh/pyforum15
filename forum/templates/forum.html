@@ -13,7 +13,7 @@
         <ul>
         {% for message in messages %}
             <li>
-                {{ message.text|upper }}
+                {{ message.user }}: {{ message.text|upper }}
             </li>
         {% endfor %}
         </ul>
