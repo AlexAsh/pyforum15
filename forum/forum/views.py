@@ -49,3 +49,8 @@ def logout(request):
 def forum(request):
     messages = Message.objects.all()
     return render(request, 'forum.html', {'messages': messages})
+
+def index(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect("/forum")
+    return HttpResponseRedirect("/login")
