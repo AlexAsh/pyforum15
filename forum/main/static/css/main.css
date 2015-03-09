@@ -6,3 +6,8 @@
     display: inline;
     margin: 20px;
 }
+
+.post-message td {
+    vertical-align: top;
+    text-align: right;
+}

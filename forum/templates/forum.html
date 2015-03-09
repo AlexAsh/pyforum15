@@ -23,6 +23,7 @@
         </p>
 
         {% if user.is_authenticated %}
+            {% include "post-message.html" %}
             <a href="/logout">logout</a>.
         {% else %}
             <a href="/login">login</a>.
