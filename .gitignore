@@ -4,3 +4,6 @@ lib
 local
 *.pyc
 forum/db.sqlite3
+
+# Ignore PyCharm files
+.idea
