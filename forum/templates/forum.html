@@ -7,12 +7,18 @@
         <p>You are anonymous.</p>
     {% endif %}
 
+    {% load mptt_tags %}
     <ul>
-        {% for message in messages %}
+        {% recursetree comments %}
             <li>
-                {{ message.user }}: {{ message.text|upper }}
+                {{ node.id }}: {{ node.user }}: {{ node.text }}
+                {% if not node.is_leaf_node %}
+                    <ul class="children">
+                        {{ children }}
+                    </ul>
+                {% endif %}
             </li>
-        {% endfor %}
+        {% endrecursetree %}
     </ul>
 
     <p>
@@ -21,8 +27,8 @@
 
     {% if user.is_authenticated %}
         {% include "post-message.html" %}
-            <a href="/logout">logout</a>.
+        <a href="/logout">logout</a>.
     {% else %}
-            <a href="/login">login</a>.
+        <a href="/login">login</a>.
     {% endif %}
 {% endblock %}

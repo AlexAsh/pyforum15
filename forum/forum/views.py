@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
@@ -6,7 +5,7 @@ from django.http import HttpResponseRedirect
 
 from django.contrib import auth
 
-from main.models import Message
+from main.models import Comment
 
 def register(request):
     if request.method == 'POST':
@@ -48,9 +47,16 @@ def logout(request):
 
 def forum(request):
     if request.method == "POST" and request.user.is_authenticated():
-        Message.objects.create(text=request.POST["text"], user=request.user).save()
-    messages = Message.objects.all()
-    return render(request, 'forum.html', {'messages': messages})
+        parent = Comment.get_comment_by_id_string(request.POST["parent"])
+
+        if parent:
+            Comment.objects.create(text=request.POST["text"],
+                                   user=request.user, parent=parent).save()
+        else:
+            Comment.objects.create(text=request.POST["text"], user=request.user).save()
+
+    comments = Comment.objects.all()
+    return render(request, 'forum.html', {'comments': comments})
 
 def index(request):
     if request.user.is_authenticated():
