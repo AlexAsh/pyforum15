@@ -14,3 +14,6 @@
 6. В браузере открыть [```http://0.0.0.0:8001/```](http://0.0.0.0:8001/) или [```http://localhost:8001/```](http://localhost:8001/)
 7. ...
 8. PROFIT!
+
+
+[MSU CMC PYTHON 2015 SPRING](http://uneex.ru/LecturesCMC/PythonDevelopment2015)
